@@ -1,0 +1,26 @@
+# Конфигурация otchetTK (MVP).
+# Смена LLM-провайдера — только здесь, без изменения кода (ТЗ, п. 6.2).
+# Ключи API задаются переменной окружения и не хранятся в репозитории (ТЗ, п. 6.1).
+
+llm:
+  # Этап MVP: внешний OpenAI-совместимый API (демонстрация заказчику).
+  base_url: "https://api.openai.com/v1"
+  model: "gpt-4o-mini"
+  api_key_env: "OPENAI_API_KEY"
+
+  # Воспроизводимость (ТЗ, п. 7): нулевая температура, фиксированное зерно.
+  temperature: 0.0
+  seed: 0
+
+  timeout_s: 180
+  # Перезапросы при ответе, не прошедшем валидацию схемы (ТЗ, п. 5.3)
+  max_retries_validation: 2
+  # Параллельное выполнение рубрик П-2…П-5
+  parallel_rubrics: true
+
+paths:
+  prompts_dir: "prompts"
+  safety_base_dir: "data/safety_base"
+  etalons_dir: "data/etalons"
+  reports_dir: "reports"
+  logs_dir: "logs"

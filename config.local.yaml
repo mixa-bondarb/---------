@@ -1,0 +1,24 @@
+# Пример конфигурации для локальной модели с открытыми весами (этап развития — ТЗ, п. 6.2).
+# Запуск локального OpenAI-совместимого сервера, например Ollama:
+#   ollama pull qwen2.5:14b-instruct
+#   ollama serve
+# Затем:  python -m otchettk <файл ТК> --config config.local.yaml
+#
+# Код проверок при смене провайдера не меняется (критерий приёмки 5).
+
+llm:
+  base_url: "http://localhost:11434/v1"   # Ollama; для vLLM обычно http://localhost:8000/v1
+  model: "qwen2.5:14b-instruct"
+  api_key_env: "LOCAL_LLM_API_KEY"        # локальному серверу ключ обычно не нужен
+  temperature: 0.0
+  seed: 0
+  timeout_s: 600
+  max_retries_validation: 2
+  parallel_rubrics: false                 # локальный сервер часто обслуживает один запрос
+
+paths:
+  prompts_dir: "prompts"
+  safety_base_dir: "data/safety_base"
+  etalons_dir: "data/etalons"
+  reports_dir: "reports"
+  logs_dir: "logs"
