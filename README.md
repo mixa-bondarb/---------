@@ -108,6 +108,17 @@ python -m otchettk <файл ТК .pdf|.docx> [--config config.yaml] [--out ка
 .venv/bin/python scripts/make_test_data.py
 ```
 
+## Офлайн-демонстрация без внешнего API
+
+Полный конвейер можно прогнать без внешних сервисов — на локальном
+сервере-заглушке с заготовленными ответами (демонстрирует и смену провайдера
+только конфигурацией):
+
+```bash
+.venv/bin/python scripts/mock_llm_server.py &
+.venv/bin/python -m otchettk data/test_cards/tk_102_defects.docx --config config.demo.yaml
+```
+
 ## Автотесты
 
 Механика цепи (валидация, повторы, агрегация, верификация цитат, базы знаний,

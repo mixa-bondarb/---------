@@ -1,0 +1,20 @@
+# Конфигурация офлайн-демонстрации: сервер-заглушка вместо внешнего API.
+# 1) python scripts/mock_llm_server.py
+# 2) python -m otchettk data/test_cards/tk_102_defects.docx --config config.demo.yaml
+
+llm:
+  base_url: "http://127.0.0.1:8765/v1"
+  model: "mock-demo"
+  api_key_env: "DEMO_API_KEY"   # заглушке ключ не нужен
+  temperature: 0.0
+  seed: 0
+  timeout_s: 30
+  max_retries_validation: 2
+  parallel_rubrics: true
+
+paths:
+  prompts_dir: "prompts"
+  safety_base_dir: "data/safety_base"
+  etalons_dir: "data/etalons"
+  reports_dir: "reports"
+  logs_dir: "logs"
